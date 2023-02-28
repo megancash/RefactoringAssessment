@@ -1,4 +1,5 @@
-/*
+/* Student Name: Megan Cash
+ * Student Number: C19317723
  * 
  * This is a Random Access Employee record definition
  * 

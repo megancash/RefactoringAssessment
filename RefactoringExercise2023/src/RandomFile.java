@@ -1,4 +1,5 @@
-/*
+/* Student Name: Megan Cash
+ * Student Number: C19317723
  * 
  * This class is for accessing, creating and modifying records in a file
  * 

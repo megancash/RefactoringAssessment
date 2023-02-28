@@ -1,4 +1,5 @@
-/*
+/* Student Name: Megan Cash
+ * Student Number: C19317723
  * 
  * This is the dialog for Employee search by ID
  * 

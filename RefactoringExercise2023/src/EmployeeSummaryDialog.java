@@ -1,4 +1,5 @@
-/*
+/* Student Name: Megan Cash
+ * Student Number: C19317723
  * 
  * This is the summary dialog for displaying all Employee details
  * 
@@ -69,6 +70,7 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 			header.addElement(headerName[i]);
 		}// end for
 		// construnct table and choose table model for each column
+		//Remove the arguments to stop getting initial error
 		tableModel = new DefaultTableModel(this.allEmployees, header) {
 			public Class getColumnClass(int c) {
 				switch (c) {
