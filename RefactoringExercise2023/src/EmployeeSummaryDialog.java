@@ -69,8 +69,26 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 		for (int i = 0; i < headerName.length; i++) {
 			header.addElement(headerName[i]);
 		}// end for
-		// construnct table and choose table model for each column
-		//Remove the arguments to stop getting initial error
+		//----------------------------------------------------
+		//STEP 1
+		//Input a new vector of Vector from the vector of Objects
+		Vector<Vector<Object>> detailsVector = new Vector<Vector<Object>>();
+		
+		for (int i=0; i < allEmployees.size(); i++) {
+			Employee employee = (Employee) allEmployees.get(i);
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		//-------------------------------------------------------
+		// construct table and choose table model for each column
 		tableModel = new DefaultTableModel(this.allEmployees, header) {
 			public Class getColumnClass(int c) {
 				switch (c) {
