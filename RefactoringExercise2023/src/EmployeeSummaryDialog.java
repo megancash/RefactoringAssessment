@@ -71,17 +71,35 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 		}// end for
 		//----------------------------------------------------
 		//STEP 1
-		//Input a new vector of Vector from the vector of Objects
+		//Creation of a new vector of Vector containing the vector of Objects
 		Vector<Vector<Object>> detailsVector = new Vector<Vector<Object>>();
 		
 		for (int i=0; i < allEmployees.size(); i++) {
 			Employee employee = (Employee) allEmployees.get(i);
+			Vector<Object> rowsVector = new Vector<Object>();
+			rowsVector.addElement(employee.getEmployeeId());
+			rowsVector.addElement(employee.getPps());
+			rowsVector.addElement(employee.getSurname());
+			rowsVector.addElement(employee.getFirstName());
+			rowsVector.addElement(employee.getGender());
+			rowsVector.addElement(employee.getDepartment());
+			rowsVector.addElement(employee.getSalary());
+			rowsVector.addElement(employee.getFullTime());
 			
+			detailsVector.addElement(rowsVector);
 			
 		}
 		
-		
-		
+		//Creation of a vector of header names
+		Vector<String> headerNames = new Vector<String>();
+		headerNames.addElement("ID:");
+		headerNames.addElement("PPS Number:");
+		headerNames.addElement("Surname:");
+		headerNames.addElement("First Name:");
+		headerNames.addElement("Gender:");
+		headerNames.addElement("Department:");
+		headerNames.addElement("Salary:");
+		headerNames.addElement("Full Time:");
 		
 		
 		
@@ -89,7 +107,7 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 		
 		//-------------------------------------------------------
 		// construct table and choose table model for each column
-		tableModel = new DefaultTableModel(this.allEmployees, header) {
+		tableModel = new DefaultTableModel(detailsVector, headerNames) {
 			public Class getColumnClass(int c) {
 				switch (c) {
 				case 0:
