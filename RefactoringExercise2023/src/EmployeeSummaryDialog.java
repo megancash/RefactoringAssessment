@@ -47,7 +47,7 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 		setVisible(true);
 
 	}
-	// initialise container
+	// Initialize container
 	public Container summaryPane() {
 		JPanel summaryDialog = new JPanel(new MigLayout());
 		JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -71,7 +71,7 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 		}// end for
 		//----------------------------------------------------
 		//STEP 1
-		//Creation of a new vector of Vector containing the vector of Objects
+		//Creation of a new vector of Vector containing the vector of Objects to remove initial error.
 		Vector<Vector<Object>> detailsVector = new Vector<Vector<Object>>();
 		
 		for (int i=0; i < allEmployees.size(); i++) {
