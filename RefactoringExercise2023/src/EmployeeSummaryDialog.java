@@ -29,10 +29,11 @@ import net.miginfocom.swing.MigLayout;
 
 public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 	// vector with all Employees details
-	Vector<Object> allEmployees;
+	Vector<Vector<Object>> allEmployees;
 	JButton back;
 	
-	public EmployeeSummaryDialog(Vector<Object> allEmployees) {
+	//Creation of a new vector of Vector containing the vector of Objects to remove initial error
+	public EmployeeSummaryDialog(Vector<Vector<Object>> allEmployees) {
 		setTitle("Employee Summary");
 		setModal(true);
 		this.allEmployees = allEmployees;
@@ -69,45 +70,9 @@ public class EmployeeSummaryDialog extends JDialog implements ActionListener {
 		for (int i = 0; i < headerName.length; i++) {
 			header.addElement(headerName[i]);
 		}// end for
-		//----------------------------------------------------
-		//STEP 1
-		//Creation of a new vector of Vector containing the vector of Objects to remove initial error.
-		Vector<Vector<Object>> detailsVector = new Vector<Vector<Object>>();
 		
-		for (int i=0; i < allEmployees.size(); i++) {
-			Employee employee = (Employee) allEmployees.get(i);
-			Vector<Object> rowsVector = new Vector<Object>();
-			rowsVector.addElement(employee.getEmployeeId());
-			rowsVector.addElement(employee.getPps());
-			rowsVector.addElement(employee.getSurname());
-			rowsVector.addElement(employee.getFirstName());
-			rowsVector.addElement(employee.getGender());
-			rowsVector.addElement(employee.getDepartment());
-			rowsVector.addElement(employee.getSalary());
-			rowsVector.addElement(employee.getFullTime());
-			
-			detailsVector.addElement(rowsVector);
-			
-		}
-		
-		//Creation of a vector of header names
-		Vector<String> headerNames = new Vector<String>();
-		headerNames.addElement("ID:");
-		headerNames.addElement("PPS Number:");
-		headerNames.addElement("Surname:");
-		headerNames.addElement("First Name:");
-		headerNames.addElement("Gender:");
-		headerNames.addElement("Department:");
-		headerNames.addElement("Salary:");
-		headerNames.addElement("Full Time:");
-		
-		
-		
-		
-		
-		//-------------------------------------------------------
 		// construct table and choose table model for each column
-		tableModel = new DefaultTableModel(detailsVector, headerNames) {
+		tableModel = new DefaultTableModel(this.allEmployees, header) {
 			public Class getColumnClass(int c) {
 				switch (c) {
 				case 0:

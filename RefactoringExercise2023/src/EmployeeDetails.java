@@ -341,7 +341,7 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 	private void displayEmployeeSummaryDialog() {
 		// display Employee summary dialog if these is someone to display
 		if (isSomeoneToDisplay())
-			new EmployeeSummaryDialog(getAllEmloyees());
+			new EmployeeSummaryDialog(getAllEmployees());
 	}// end displaySummaryDialog
 
 	// display search by ID dialog
@@ -576,10 +576,10 @@ public class EmployeeDetails extends JFrame implements ActionListener, ItemListe
 		} // end if
 	}// end deleteDecord
 
-	// create vector of vectors with all Employee details
-	private Vector<Object> getAllEmloyees() {
+	// create vector of vectors object with all Employee details
+	private Vector<Vector<Object>> getAllEmployees() {
 		// vector of Employee objects
-		Vector<Object> allEmployee = new Vector<Object>();
+		Vector<Vector<Object>> allEmployee = new Vector<Vector<Object>>();
 		Vector<Object> empDetails;// vector of each employee details
 		long byteStart = currentByteStart;
 		int firstId;
