@@ -8,6 +8,7 @@ import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Objects;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -27,7 +28,8 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 	JComboBox<String> genderCombo, departmentCombo, fullTimeCombo;
 	JButton save, cancel;
 	EmployeeDetails parent;
-	// constructor for add record dialog
+	Color red = new Color(255,150,150);
+	
 	public AddRecordDialog(EmployeeDetails parent) {
 		setTitle("Add Record");
 		setModal(true);
@@ -35,21 +37,22 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 		this.parent.setEnabled(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		
-		JScrollPane scrollPane = new JScrollPane(dialogPane());
-		setContentPane(scrollPane);
+		
+		setContentPane(new JScrollPane(dialogPane()));
 		
 		getRootPane().setDefaultButton(save);
 		
 		setSize(500, 370);
 		setLocation(350, 250);
 		setVisible(true);
-	}// end AddRecordDialog
+	}
 
 	// initialize dialog container
 	public Container dialogPane() {
-		JPanel empDetails, buttonPanel;
-		empDetails = new JPanel(new MigLayout());
-		buttonPanel = new JPanel();
+		JPanel empDetails = new JPanel(new MigLayout());
+		JPanel buttonPanel = new JPanel();
+	
+		
 		JTextField field;
 
 		empDetails.setBorder(BorderFactory.createTitledBorder("Employee Details"));
@@ -105,17 +108,17 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 		return empDetails;
 	}
 
-	// add record to file
 	public void addRecord() {
 		boolean fullTime = false;
 		Employee theEmployee;
 
-		if (((String) fullTimeCombo.getSelectedItem()).equalsIgnoreCase("Yes"))
+		if (((String) fullTimeCombo.getSelectedItem()).equalsIgnoreCase("Yes") && (fullTimeCombo.getSelectedItem() != null))
 			fullTime = true;
 		// create new Employee record with details from text fields
 		theEmployee = new Employee(Integer.parseInt(idField.getText()), ppsField.getText().toUpperCase(), surnameField.getText().toUpperCase(),
-				firstNameField.getText().toUpperCase(), genderCombo.getSelectedItem().toString().charAt(0),
-				departmentCombo.getSelectedItem().toString(), Double.parseDouble(salaryField.getText()), fullTime);
+				firstNameField.getText().toUpperCase(), 
+				Objects.requireNonNull(genderCombo.getSelectedItem()).toString().charAt(0),
+				Objects.requireNonNull(departmentCombo.getSelectedItem()).toString(), Double.parseDouble(salaryField.getText()), fullTime);
 		this.parent.currentEmployee = theEmployee;
 		this.parent.addRecord(theEmployee);
 		this.parent.displayRecords(theEmployee);
@@ -126,43 +129,43 @@ public class AddRecordDialog extends JDialog implements ActionListener {
 		boolean valid = true;
 		// if any of inputs are in wrong format, colour text field and display message
 		if (ppsField.getText().equals("")) {
-			ppsField.setBackground(new Color(255, 150, 150));
+			ppsField.setBackground(red);
 			valid = false;
 		}// end if
 		if (this.parent.correctPps(this.ppsField.getText().trim(), -1)) {
-			ppsField.setBackground(new Color(255, 150, 150));
+			ppsField.setBackground(red);
 			valid = false;
 		}// end if
 		if (surnameField.getText().isEmpty()) {
-			surnameField.setBackground(new Color(255, 150, 150));
+			surnameField.setBackground(red);
 			valid = false;
 		}// end if
 		if (firstNameField.getText().isEmpty()) {
-			firstNameField.setBackground(new Color(255, 150, 150));
+			firstNameField.setBackground(red);
 			valid = false;
 		}// end if
 		if (genderCombo.getSelectedIndex() == 0) {
-			genderCombo.setBackground(new Color(255, 150, 150));
+			genderCombo.setBackground(red);
 			valid = false;
 		}// end if
 		if (departmentCombo.getSelectedIndex() == 0) {
-			departmentCombo.setBackground(new Color(255, 150, 150));
+			departmentCombo.setBackground(red);
 			valid = false;
 		}// end if
 		try {// try to get values from text field
 			Double.parseDouble(salaryField.getText());
 			// check if salary is greater than 0
 			if (Double.parseDouble(salaryField.getText()) < 0) {
-				salaryField.setBackground(new Color(255, 150, 150));
+				salaryField.setBackground(red);
 				valid = false;
 			}// end if
 		}// end try
 		catch (NumberFormatException num) {
-			salaryField.setBackground(new Color(255, 150, 150));
+			salaryField.setBackground(red);
 			valid = false;
 		}// end catch
 		if (fullTimeCombo.getSelectedIndex() == 0) {
-			fullTimeCombo.setBackground(new Color(255, 150, 150));
+			fullTimeCombo.setBackground(red);
 			valid = false;
 		}// end if
 		return valid;
