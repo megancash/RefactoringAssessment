@@ -102,7 +102,7 @@ public class RandomFile {
 		// object to be written to file
 		RandomAccessEmployeeRecord record;
 		Employee oldDetails = newDetails;
-		try // output values to file
+		try 
 		{
 			record = new RandomAccessEmployeeRecord(oldDetails.getEmployeeId(), oldDetails.getPps(),
 					oldDetails.getSurname(), oldDetails.getFirstName(), oldDetails.getGender(),
@@ -215,11 +215,11 @@ public class RandomFile {
 				byteToStart = input.length() - RandomAccessEmployeeRecord.SIZE;
 			else
 				byteToStart = byteToStart - RandomAccessEmployeeRecord.SIZE;
-		} // end try
+		} 
 		catch (NumberFormatException e) {
-		} // end catch
+		} 
 		catch (IOException e) {
-		}// end catch
+		}
 		return byteToStart;
 	}// end getPrevious
 
@@ -258,13 +258,13 @@ public class RandomFile {
 					if (record.getPps().trim().equalsIgnoreCase(pps)) {
 						ppsExist = true;
 						JOptionPane.showMessageDialog(null, "PPS number already exist!");
-					}// end if
-				}// end if
+					}
+				}
 				currentByte = currentByte + RandomAccessEmployeeRecord.SIZE;
-			}// end while
-		} // end try
+			}
+		}
 		catch (IOException e) {
-		}// end catch
+		}
 
 		return ppsExist;
 	}// end isPpsExist
